@@ -16,18 +16,19 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ItemRecViewAdapter extends RecyclerView.Adapter<ItemRecViewAdapter.ViewHolder>
 {
 
     private ArrayList<Item> items = new ArrayList<>();
     private Context mContext;
+
 
     public ItemRecViewAdapter(Context mContext) {
         this.mContext = mContext;
@@ -77,8 +78,42 @@ public class ItemRecViewAdapter extends RecyclerView.Adapter<ItemRecViewAdapter.
         this.items = items;
         notifyDataSetChanged();
     }
-    public ArrayList<Item> getItems() {
+
+    public ArrayList<Item> getItems(int fromPosition, int toPosition ) {
+        Collections.swap(items,fromPosition,toPosition);
         return this.items;
+    }
+
+    public void refresh(int fromPosition, int toPosition) {
+        Collections.swap(items,fromPosition,toPosition);
+
+        if(fromPosition<toPosition) {
+            for (int i = fromPosition; i < toPosition + 1; i++) {
+
+                notifyItemChanged(i);
+            }
+        }else if(fromPosition>toPosition) {
+            for (int i = toPosition; i < fromPosition + 1; i++) {
+                notifyItemChanged(i);
+            }
+        }
+    }
+
+    public void setPositions(int fromPosition, int toPosition) {
+        Item temp;
+        if(fromPosition<toPosition) {
+            temp = items.get(fromPosition);
+            for (int i = fromPosition; i < toPosition+1; i++) {
+                items.set(i,items.get(i+1));
+            }
+            items.set(toPosition,temp);
+        }else if(fromPosition>toPosition) {
+            temp = items.get(toPosition);
+            for (int i = toPosition; i < fromPosition+1; i++) {
+                items.set(i,items.get(i+1));
+            }
+            items.set(fromPosition,temp);
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder
