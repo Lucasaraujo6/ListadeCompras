@@ -19,9 +19,8 @@
             android:id="@+id/edTxtName"
             android:layout_width="200dp"
             android:layout_height="40dp"
-            android:layout_alignTop="@+id/imageNewItem"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="30dp"
             android:hint="New Item"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +32,8 @@
             android:layout_below="@id/edTxtName"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:hint="Brand" />
+            android:hint="Brand"
+            android:visibility="gone"/>
 
         <EditText
             android:id="@+id/edTxtPants"
@@ -49,7 +49,7 @@
             android:id="@+id/edTxtQntd"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_centerVertical="true"
+            android:layout_alignBottom="@id/edTxtName"
             android:layout_marginLeft="15dp"
             android:layout_toEndOf="@+id/edTxtName"
             android:hint="Qnt"
@@ -57,29 +57,87 @@
             app:layout_constraintStart_toEndOf="@+id/edTxtName" />
 
 
-        <ImageView
-            android:id="@+id/imageNewItem"
-            android:layout_width="100dp"
-
-            android:layout_height="100dp"
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginVertical="25dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:layout_toEndOf="@+id/edTxtQntd"
-            android:onClick="onImgClicked"
+            android:onClick="onAddClicked"
             android:src="@mipmap/ic_launcher"
+            android:text="ADD"
             app:layout_constraintStart_toEndOf="@+id/edTxtQntd"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UsingOnClickInXml" />
+
+
 
 
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imgShowMore"
+        android:layout_width="55dp"
+        android:layout_height="20dp"
+        android:layout_toLeftOf="@id/txtShowMore"
+        android:onClick="moreOptions"
+        android:src="@drawable/showmore"
+        app:layout_constraintBottom_toBottomOf="@+id/txtShowMore"
+        app:layout_constraintEnd_toStartOf="@+id/txtShowMore"
+        app:layout_constraintTop_toTopOf="@+id/txtShowMore"/>
+
+    <TextView
+        android:id="@+id/txtShowMore"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="moreOptions"
+        android:text="Show More"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    <ImageView
+        android:id="@+id/imgShowMore2"
+        android:layout_width="55dp"
+        android:layout_height="20dp"
+        android:layout_toEndOf="@id/txtShowMore"
+        android:onClick="moreOptions"
+        android:src="@drawable/showmore"
+        app:layout_constraintBottom_toBottomOf="@+id/txtShowMore"
+        app:layout_constraintStart_toEndOf="@+id/txtShowMore"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itensRecView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintHeight_max="400dp"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintTop_toBottomOf="@+id/txtShowMore"
         tools:layout_editor_absoluteX="0dp"
         />
+
+    <ImageView
+        android:id="@+id/imgAtoZ"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:baselineAlignBottom="true"
+        android:onClick="reordenate"
+        android:src="@drawable/atoz"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/relativeLayout" />
+
+    <ImageView
+        android:id="@+id/imgZtoA"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+
+        android:onClick="reordenate"
+        android:src="@drawable/ztoa"
+        app:layout_constraintBottom_toBottomOf="@+id/imgAtoZ"
+        app:layout_constraintStart_toEndOf="@+id/imgAtoZ"
+        app:layout_constraintTop_toTopOf="@+id/imgAtoZ" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
