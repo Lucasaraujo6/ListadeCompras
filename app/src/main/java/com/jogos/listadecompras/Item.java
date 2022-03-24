@@ -2,12 +2,15 @@ package com.jogos.listadecompras;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Item extends AppCompatActivity {
-    private int id;
+    private int id=-1;
     private String name;
-    private int amount;
+    private int amount=-1;
     private String brand;
-    private double price;
+    private double price=-1;
     private String imageUrl;
     private String observations;
     private boolean isChecked;
@@ -24,6 +27,8 @@ public class Item extends AppCompatActivity {
         this.observations = observations;
         this.isChecked = isChecked;
     }
+
+
 
     public void setChecked(boolean checked) {
         isChecked = !checked;
